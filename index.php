@@ -19,7 +19,7 @@ foreach (explode("\n", file_get_contents($argv[1])) as $row) {
         $commission = $commissionCalculator->calculate(json_decode($row, true, 512, JSON_THROW_ON_ERROR));
         echo $moneyService->format($commission);
         echo "\n";
-    } catch (JsonException $exception) {
+    } catch (Exception $exception) {
         echo $exception->getMessage();
         echo "\n";
     }
