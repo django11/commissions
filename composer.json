@@ -1,0 +1,34 @@
+{
+    "name": "django11/commissions",
+    "description": "Commission calculator for transactions",
+    "keywords": [],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "django11\\TransactionCommission\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "django11\\TransactionCommission\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "moneyphp/money": "^3.3",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "mockery/mockery": "^1.2"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "phpunit": "phpunit",
+        "test": ["@phpunit", "@test-cs"]
+    }
+}
