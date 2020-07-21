@@ -5,6 +5,7 @@ namespace django11\TransactionCommission\Tests;
 use django11\TransactionCommission\Providers\BinLookupProvider;
 use django11\TransactionCommission\Providers\CurrencyRateProvider;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Warning;
 
 /**
  * Class ProviderTests
@@ -12,6 +13,14 @@ use PHPUnit\Framework\TestCase;
  */
 class ProviderTest  extends TestCase
 {
+    public function setUp(): void
+    {
+        $connected = @fsockopen("www.google.com", 80);
+
+        if (!$connected) {
+            $this->markTestSkipped('Internet connection required to perform this test!');
+        }
+    }
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \django11\TransactionCommission\Exceptions\CurrencyRateApiException
