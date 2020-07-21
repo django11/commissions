@@ -13,18 +13,25 @@ use PHPUnit\Framework\TestCase;
  */
 class MoneyServiceTest extends TestCase
 {
-    public function testParseMoney()
+    /**
+     * @var MoneyService
+     */
+    private $moneyService;
+
+    public function setUp(): void
     {
-        $moneyService = MoneyService::init();
-        $parsedToMoney = $moneyService->parse('11.11', 'USD');
+        $this->moneyService = MoneyService::init();
+    }
+
+    public function testParseMoney(): void
+    {
+        $parsedToMoney = $this->moneyService->parse('11.11', 'USD');
         $this->assertInstanceOf(Money::class, $parsedToMoney);
     }
 
-
-    public function testMoneyFormat()
+    public function testMoneyFormat(): void
     {
-        $moneyService = MoneyService::init();
-        $formattedMoney = $moneyService->format(new Money(1111, new Currency('USD')));
+        $formattedMoney = $this->moneyService->format(new Money(1111, new Currency('USD')));
         $this->assertEquals('11.11', $formattedMoney);
     }
 }
