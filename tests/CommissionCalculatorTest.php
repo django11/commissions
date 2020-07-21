@@ -15,18 +15,12 @@ use PHPUnit\Framework\TestCase;
 class CommissionCalculatorTest extends TestCase
 {
     /**
-     * @var CommissionCalculator
-     */
-    private $commissionCalculator;
-
-    /**
      * @var MoneyService
      */
     private $moneyService;
 
     public function setUp(): void
     {
-        $this->commissionCalculator = new CommissionCalculator($this->getCurrencyRateProviderMock(), $this->getBinLookupProviderMock());
         $this->moneyService = MoneyService::init();
     }
 
@@ -38,7 +32,8 @@ class CommissionCalculatorTest extends TestCase
      */
     public function testCalculate(array $transactionData, float $expectedResult): void
     {
-        $result = $this->commissionCalculator->calculate($transactionData);
+        $commissionCalculator = new CommissionCalculator($this->getCurrencyRateProviderMock(), $this->getBinLookupProviderMock());
+        $result = $commissionCalculator->calculate($transactionData);
         $this->assertEquals($expectedResult, $this->moneyService->format($result));
     }
 
